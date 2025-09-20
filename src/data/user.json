@@ -1,0 +1,142 @@
+[
+  {
+    "id": 1,
+    "name": "Admin",
+    "email": "admin@gmail.com",
+    "role": "Admin",
+    "status": "Active"
+  },
+  {
+    "id": 2,
+    "name": "Bob Smith",
+    "email": "bob.smith@example.com",
+    "role": "User",
+    "status": "Inactive"
+  },
+  {
+    "id": 3,
+    "name": "Charlie Brown",
+    "email": "charlie.brown@example.com",
+    "role": "Manager",
+    "status": "Active"
+  },
+  {
+    "id": 4,
+    "name": "Diana Prince",
+    "email": "diana.prince@example.com",
+    "role": "User",
+    "status": "Active"
+  },
+  {
+    "id": 5,
+    "name": "Ethan Hunt",
+    "email": "ethan.hunt@example.com",
+    "role": "Software Devoloper",
+    "status": "Inactive"
+  },
+  {
+    "id": 6,
+    "name": "Fiona Gallagher",
+    "email": "fiona.gallagher@example.com",
+    "role": "User",
+    "status": "Active"
+  },
+  {
+    "id": 7,
+    "name": "George Miller",
+    "email": "george.miller@example.com",
+    "role": "User",
+    "status": "Inactive"
+  },
+  {
+    "id": 8,
+    "name": "Hannah Williams",
+    "email": "hannah.williams@example.com",
+    "role": "Manager",
+    "status": "Active"
+  },
+  {
+    "id": 9,
+    "name": "Ian Curtis",
+    "email": "ian.curtis@example.com",
+    "role": "User",
+    "status": "Active"
+  },
+  {
+    "id": 10,
+    "name": "Julia Roberts",
+    "email": "julia.roberts@example.com",
+    "role": "Software Devoloper",
+    "status": "Inactive"
+  },
+  {
+    "id": 11,
+    "name": "Kevin Turner",
+    "email": "kevin.turner@example.com",
+    "role": "User",
+    "status": "Active"
+  },
+  {
+    "id": 12,
+    "name": "Laura Palmer",
+    "email": "laura.palmer@example.com",
+    "role": "Manager",
+    "status": "Inactive"
+  },
+  {
+    "id": 13,
+    "name": "Michael Scott",
+    "email": "michael.scott@example.com",
+    "role": "Software Devoloper",
+    "status": "Active"
+  },
+  {
+    "id": 14,
+    "name": "Nancy Drew",
+    "email": "nancy.drew@example.com",
+    "role": "User",
+    "status": "Active"
+  },
+  {
+    "id": 15,
+    "name": "Oscar Martinez",
+    "email": "oscar.martinez@example.com",
+    "role": "User",
+    "status": "Inactive"
+  },
+  {
+    "id": 16,
+    "name": "Pam Beesly",
+    "email": "pam.beesly@example.com",
+    "role": "Manager",
+    "status": "Active"
+  },
+  {
+    "id": 17,
+    "name": "Quentin Blake",
+    "email": "quentin.blake@example.com",
+    "role": "User",
+    "status": "Inactive"
+  },
+  {
+    "id": 18,
+    "name": "Rachel Green",
+    "email": "rachel.green@example.com",
+    "role": "Software Devoloper",
+    "status": "Active"
+  },
+  {
+    "id": 19,
+    "name": "Steve Rogers",
+    "email": "steve.rogers@example.com",
+    "role": "User",
+    "status": "Active"
+  },
+  {
+    "id": 20,
+    "name": "Tina Fey",
+    "email": "tina.fey@example.com",
+    "role": "Manager",
+    "status": "Inactive"
+  }
+]
