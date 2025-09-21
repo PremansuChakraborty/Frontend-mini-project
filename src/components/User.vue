@@ -2,20 +2,21 @@
 import { ref, computed } from 'vue'
 import userData from '../data/user.json'
 import AddUser from './AddUser.vue'
-import { useAdminStore } from '../stores/authStore'
+import { useStore } from 'vuex'
+
+
+const store = useStore()
+
 const userCollection = ref(userData)
 
-// Filters
 const searchId = ref('')
 const selectedRole = ref('')
 const selectedStatus = ref('')
-const adminStore=useAdminStore()
-// Add User
+
 const addUser = (newUser) => {
   userCollection.value.push(newUser)
 }
 
-// Computed filtered users
 const filteredUsers = computed(() => {
   return userCollection.value.filter(user => {
     const matchesId = searchId.value
@@ -34,7 +35,10 @@ const filteredUsers = computed(() => {
   })
 })
 
+const isLoggedIn = computed(() => store.getters.isLoggedIn)
+const adminEmail = computed(() => store.getters.adminEmail)
 </script>
+
 
 <template>
   <div class="container">
@@ -83,7 +87,7 @@ const filteredUsers = computed(() => {
               </span>
             </td>
             <td class="actions">
-              <button v-show="adminStore.isLoggedIn" class="btn-edit" @click="$router.push(`/edit-user/${user.id}`)">Edit</button>
+              <button v-show="isLoggedIn" class="btn-edit" @click="$router.push(`/edit-user/${user.id}`)">Edit</button>
             </td>
           </tr>
         </tbody>
@@ -150,13 +154,13 @@ const filteredUsers = computed(() => {
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 8px;
-  overflow-x: auto; /* enable horizontal scroll on small screens */
+  overflow-x: auto; 
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 600px; /* ensures table has a minimum width on mobile */
+  min-width: 600px; 
 }
 
 thead {
@@ -193,7 +197,7 @@ tbody tr:hover {
   font-weight: bold;
 }
 
-/* Responsive adjustments */
+
 @media (max-width: 768px) {
   .header {
     flex-direction: column;

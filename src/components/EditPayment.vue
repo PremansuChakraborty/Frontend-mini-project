@@ -90,7 +90,7 @@ h2 {
   text-align: center;
   color: #333;
   margin-bottom: 20px;
-  font-size: clamp(1.2rem, 2vw, 1.5rem); /* scales with screen size */
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
 }
 
 .form-group {
@@ -108,10 +108,10 @@ label {
 input,
 select {
   width: 100%;
-  padding: clamp(8px, 1.5vw, 10px); /* responsive padding */
+  padding: clamp(8px, 1.5vw, 10px); 
   border-radius: 4px;
   border: 1px solid #ccc;
-  font-size: clamp(0.9rem, 1.2vw, 1rem); /* responsive font */
+  font-size: clamp(0.9rem, 1.2vw, 1rem); 
   outline: none;
   transition: border 0.2s;
 }

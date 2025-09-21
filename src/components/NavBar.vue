@@ -6,15 +6,15 @@
         <li><router-link to="/">Reports</router-link></li>
         <li><router-link to="/user">Users</router-link></li>
         <li><router-link to="/payment">Payments</router-link></li>
-        <li><router-link to="/admin-login">{{ adminStore.isLoggedIn? "Logout" :"Login" }}</router-link></li>
+        <li><router-link to="/admin-login">{{store.isLoggedIn? "Logout" :"Login" }}</router-link></li>
       </ul>
     </div>
   </nav>
 </template>
 
 <script setup>
-import { useAdminStore } from '../stores/authStore';
-const adminStore=useAdminStore()
+import { useStore } from 'vuex'
+const store = useStore()
 </script>
 
 <style scoped>

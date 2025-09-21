@@ -1,33 +1,38 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
-import { useAdminStore } from '../stores/authStore'
+import { useStore } from 'vuex'
+
 const router = useRouter()
+const store = useStore()
 
 const email = ref('')
 const password = ref('')
-const adminStore=useAdminStore();
 
+const isLoggedIn = computed(() => store.getters.isLoggedIn)
 
-
-const login = () => {
+const login = async () => {
   if (!email.value || !password.value) {
     alert('Please enter email and password')
     return
   }
 
-  if (adminStore.login(email.value,password.value)) {
+  const success = await store.dispatch('login', { email: email.value, password: password.value })
+  if (success) {
     alert('Login successful!')
     router.push('/')
   } else {
     alert('Invalid email or password')
   }
 }
+
+const logout = () => {
+  store.dispatch('logout')
+}
 </script>
 
 <template>
-    
-  <div v-show="!adminStore.isLoggedIn" class="login-container">
+  <div v-show="!isLoggedIn" class="login-container">
     <h2>Login</h2>
     <form @submit.prevent="login">
       <div class="form-group">
@@ -43,10 +48,12 @@ const login = () => {
       <button type="submit">Login</button>
     </form>
   </div>
-  <div v-if="adminStore.isLoggedIn" class="logout-wrapper">
-    <button @click="adminStore.logout">Logout</button>
+
+  <div v-if="isLoggedIn" class="logout-wrapper">
+    <button @click="logout">Logout</button>
   </div>
 </template>
+
 
 <style scoped>
 .login-container,
@@ -124,7 +131,7 @@ button:hover {
   padding: 12px 24px;
 }
 
-/* Tablet */
+
 @media (max-width: 768px) {
   .login-container,
   .logout-wrapper {
@@ -143,7 +150,7 @@ button:hover {
   }
 }
 
-/* Mobile */
+
 @media (max-width: 480px) {
   .login-container,
   .logout-wrapper {

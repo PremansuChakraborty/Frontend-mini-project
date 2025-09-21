@@ -1,28 +1,41 @@
-import { defineStore } from 'pinia'
-import { ref } from 'vue'
-import router from '../routes'
 
-export const useAdminStore = defineStore('admin', () => {
- 
-  const isLoggedIn = ref(false)
-  const adminEmail = ref('')
-  const adminEmailValidate= ref("admin@gmail.com")
-  const adminPasswordValidate=ref("Admin1234")
+import { createStore } from 'vuex'
+import router from '../routes/index.js'  
 
-  const login = (email, password) => {
-    if (email === adminEmailValidate.value && password === adminPasswordValidate.value) {
-      isLoggedIn.value = true
-      adminEmail.value = email
-      return true
+const store = createStore({
+  state: {
+    isLoggedIn: false,
+    adminEmail: '',
+    adminEmailValidate: 'admin@gmail.com',
+    adminPasswordValidate: 'Admin1234'
+  },
+  mutations: {
+    SET_LOGIN(state, email) {
+      state.isLoggedIn = true
+      state.adminEmail = email
+    },
+    SET_LOGOUT(state) {
+      state.isLoggedIn = false
+      state.adminEmail = ''
     }
-    return false
+  },
+  actions: {
+    login({ commit, state }, { email, password }) {
+      if (email === state.adminEmailValidate && password === state.adminPasswordValidate) {
+        commit('SET_LOGIN', email)
+        return true
+      }
+      return false
+    },
+    logout({ commit }) {
+      commit('SET_LOGOUT')
+      router.push('/')
+    }
+  },
+  getters: {
+    isLoggedIn: (state) => state.isLoggedIn,
+    adminEmail: (state) => state.adminEmail
   }
-
-  const logout = () => {
-    isLoggedIn.value = false
-    adminEmail.value = ''
-    router.push('/')
-  }
-
-  return { isLoggedIn, adminEmail, login, logout }
 })
+
+export default store

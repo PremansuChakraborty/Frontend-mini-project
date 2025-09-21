@@ -14,6 +14,5 @@ const router = createRouter({
   routes
 })
 
-// Navigation guard for ad
 
 export default router

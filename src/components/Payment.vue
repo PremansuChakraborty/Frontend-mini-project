@@ -2,21 +2,20 @@
 import { ref, computed } from "vue"
 import paymentData from "../data/payment.json"
 import AddPayment from "./AddPayment.vue"
-import { useAdminStore } from "../stores/authStore"
-const payments = ref(paymentData)
+import { useStore } from "vuex"
 
+const store = useStore()
+const payments = ref(paymentData)
 
 const searchText = ref("")
 const selectedStatus = ref("")
 const selectedDate = ref("")
-const adminStore=useAdminStore()
 
 const statusColors = {
   Completed: "status-completed",
   Pending: "status-pending",
   Failed: "status-failed",
 }
-
 
 const filteredPayments = computed(() => {
   return payments.value.filter(p => {
@@ -36,10 +35,14 @@ const filteredPayments = computed(() => {
   })
 })
 
-const addPayment=(payment)=>{
-    payments.value.push(payment);
+const addPayment = (payment) => {
+  payments.value.push(payment)
 }
+
+const isLoggedIn = computed(() => store.getters.isLoggedIn)
+const adminEmail = computed(() => store.getters.adminEmail)
 </script>
+
 
 <template>
      <div class="container">
@@ -85,7 +88,7 @@ const addPayment=(payment)=>{
             <td><span :class="statusColors[p.status]">{{ p.status }}</span></td>
             <td>{{ p.date }}</td>
             <td class="actions">
-              <button v-show="adminStore.isLoggedIn" class="btn-edit" @click="$router.push(`/edit-payment/${p.id}`)">Edit</button>
+              <button v-show="isLoggedIn" class="btn-edit" @click="$router.push(`/edit-payment/${p.id}`)">Edit</button>
             </td>
           </tr>
         </tbody>
@@ -99,7 +102,6 @@ const addPayment=(payment)=>{
 
 
 <style scoped>
-/* Container */
 .container {
   max-width: 1000px;
   width: 95%;
@@ -108,7 +110,7 @@ const addPayment=(payment)=>{
   font-family: Arial, sans-serif;
 }
 
-/* Header */
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -136,7 +138,7 @@ const addPayment=(payment)=>{
   background-color: #1e40af;
 }
 
-/* Filters */
+
 .filters {
   display: flex;
   flex-wrap: wrap;
@@ -150,21 +152,21 @@ const addPayment=(payment)=>{
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 14px;
-  flex: 1 1 150px; /* responsive width */
+  flex: 1 1 150px; 
 }
 
-/* Table container */
+
 .table-container {
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 8px;
-  overflow-x: auto; /* scroll horizontally on small screens */
+  overflow-x: auto; 
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 600px; /* ensure horizontal scroll on mobile */
+  min-width: 600px; 
 }
 
 thead {
@@ -183,7 +185,7 @@ tbody tr:hover {
   background-color: #f9f9f9;
 }
 
-/* Status labels */
+
 .status-completed {
   background-color: #dcfce7;
   color: #166534;
@@ -208,7 +210,7 @@ tbody tr:hover {
   font-size: 13px;
 }
 
-/* Actions */
+
 .actions button {
   background: none;
   border: none;
@@ -223,14 +225,35 @@ tbody tr:hover {
 }
 
 .btn-edit {
-  color: #16a34a;
+  padding: 8px 16px;
+  background-color: #1d4ed8;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
 }
+
+.actions .btn-edit {
+  padding: 8px 16px;
+  background-color: #1d4ed8;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.actions .btn-edit:hover {
+  background-color: #1e40af;
+}
+
 
 .actions button:hover {
   opacity: 0.8;
 }
 
-/* Responsive adjustments */
+
 @media (max-width: 768px) {
   .header {
     flex-direction: column;

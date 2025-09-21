@@ -1,11 +1,10 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import { createPinia } from 'pinia'
 import router from './routes'
+import store from './stores/authStore'
 
-const pinia = createPinia() 
 
 const app = createApp(App)
-app.use(pinia)
+app.use(store)
 app.use(router)
 app.mount('#app')

@@ -59,7 +59,7 @@ const addUser = () => {
 <style scoped>
 .form-container {
   max-width: 500px;
-  width: 90%; /* Ensure responsiveness */
+  width: 90%;
   margin: 20px auto;
   padding: 20px;
   background: #fff;
@@ -116,7 +116,7 @@ button:hover {
   background-color: #1e40af;
 }
 
-/* Tablet devices */
+
 @media (max-width: 768px) {
   .form-container {
     padding: 18px;
@@ -137,7 +137,7 @@ button:hover {
   }
 }
 
-/* Mobile devices */
+
 @media (max-width: 480px) {
   .form-container {
     padding: 15px;

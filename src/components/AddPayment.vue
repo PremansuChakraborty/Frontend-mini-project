@@ -64,7 +64,7 @@ const addPayment = () => {
 <style scoped>
 .form-container {
   width: 500px;
-  max-width: 90%;  /* Make it responsive */
+  max-width: 90%; 
   margin: 20px auto;
   padding: 20px;
   background: #fff;
@@ -120,7 +120,6 @@ button:hover {
   background-color: #1e40af;
 }
 
-/* Responsive adjustments for tablets and smaller screens */
 @media (max-width: 768px) {
   .form-container {
     width: 90%;

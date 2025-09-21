@@ -1,13 +1,28 @@
 import { mount } from '@vue/test-utils'
-import { createTestingPinia } from '@pinia/testing'
 import UserManagement from '../src/components/User.vue'
 import { describe, it, expect } from 'vitest'
+import { createStore } from 'vuex'
 
-describe('UserManagement.vue', () => {
+describe('UserManagement.vue with Vuex', () => {
+  let store
+
+  beforeEach(() => {
+    store = createStore({
+      state: {
+        isLoggedIn: true,
+        adminEmail: 'admin@gmail.com'
+      },
+      getters: {
+        isLoggedIn: (state) => state.isLoggedIn,
+        adminEmail: (state) => state.adminEmail
+      }
+    })
+  })
+
   it('renders the component', () => {
     const wrapper = mount(UserManagement, {
       global: {
-        plugins: [createTestingPinia({ stubActions: false })],
+        plugins: [store],
       },
     })
     expect(wrapper.exists()).toBe(true)
@@ -17,13 +32,12 @@ describe('UserManagement.vue', () => {
   it('filters users by ID', async () => {
     const wrapper = mount(UserManagement, {
       global: {
-        plugins: [createTestingPinia({ stubActions: false })],
+        plugins: [store],
       },
     })
 
-
     const input = wrapper.find('input[placeholder="Search by User ID"]')
-    await input.setValue('1') 
+    await input.setValue('1')
 
     const rows = wrapper.findAll('tbody tr')
     expect(rows.length).toBeGreaterThan(0)
@@ -32,4 +46,3 @@ describe('UserManagement.vue', () => {
     })
   })
 })
-
